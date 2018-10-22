@@ -17,5 +17,14 @@ router.get('/', function (req, res, next) {
         const Post = query.parse(str);
     });
 });
-
+router.post('/', function (req, res, next) {
+    let str = '';
+    req.on('data', (string) => {
+        str = str + string;
+    });
+    req.on('end', () => {
+        const Post = query.parse(str);
+    });
+    res.send(str);
+});
 module.exports = router;
